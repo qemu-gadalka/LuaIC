@@ -8,9 +8,9 @@ Lua Interpreter Writed on C!
 
 **MINGW From Scoop:** `gcc LuaShell.c LuaBins/liblua55.a -o luaic.exe -I./LuaIncludes -static -lm`
 
-C Functions:
-    CSleep(ms) — Sleep
-    cbeep() — System Beep!
-    ccls() — Clears Console
+### C Functions:
+* `csleep(ms)` — System Sleep
+* `cbeep(freq, dur)` — System Beep!
+* `ccls()` — Clears Console
 
 

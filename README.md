@@ -1,5 +1,5 @@
 # LuaShell / LuaInC!
-Lua Interpreter Writed on C!
+Lua Interpreter Written on C!
 
 
 **Compile:** `MakeFile`, **requirements:** `MinGW` or `GCC` / `TCC`
@@ -13,4 +13,7 @@ Lua Interpreter Writed on C!
 * `cbeep(freq, dur)` — System Beep!
 * `ccls()` — Clears Console
 
-
+### Usage:
+* `./luaic [path/to/script.lua]` — Run from current folder (Linux)
+* `luaic [path/to/script.lua]` — Run if the program is in your System PATH (Windows/Linux)
+* `.\luaic [path/to/script.lua]` — Run from current folder (Windows, PowerShell)

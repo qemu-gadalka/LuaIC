@@ -47,6 +47,15 @@ static int l_sleep(lua_State *L) {
     return 0;
 }
 
+static int l_cls(lua_State *L) {
+#ifdef _WIN32
+    system("cls");
+#else
+    printf("\033[H\033[J");
+#endif
+    return 0;
+}
+
 static int l_beep(lua_State *L) {
     lua_Integer freq = luaL_checkinteger(L, 1);
     lua_Integer dur  = luaL_checkinteger(L, 2);
@@ -126,7 +135,7 @@ int main(int argc, char *argv[]) {
     }
 
     luaL_openlibs(L);
-
+    lua_register(L, "ccls", l_cls);.
     lua_register(L, "csleep", l_sleep);
     lua_register(L, "cbeep",  l_beep);
 

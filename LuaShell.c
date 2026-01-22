@@ -135,7 +135,7 @@ int main(int argc, char *argv[]) {
     }
 
     luaL_openlibs(L);
-    lua_register(L, "ccls", l_cls);.
+    lua_register(L, "ccls", l_cls);
     lua_register(L, "csleep", l_sleep);
     lua_register(L, "cbeep",  l_beep);
 

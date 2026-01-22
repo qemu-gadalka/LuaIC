@@ -15,5 +15,6 @@ Lua Interpreter Written on C!
 
 ### Usage:
 * `./luaic [path/to/script.lua]` — Run from current folder (Linux)
-* `luaic [path/to/script.lua]` — Run if the program is in your System PATH (Windows/Linux)
+* `luaic [path/to/script.lua]` — Run if the program is in your System PATH (Windows, CMD/Linux)
 * `.\luaic [path/to/script.lua]` — Run from current folder (Windows, PowerShell)
+

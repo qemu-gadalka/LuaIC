@@ -2,3 +2,5 @@ gcc:
 	gcc LuaShell.c LuaBins/liblua55.a -o Output/luaic -I./LuaIncludes -static -lm
 mingw:
 	x86_64-w64-mingw32-gcc LuaShell.c LuaBins/liblua55.a -o Output/luaic.exe -I./LuaIncludes -static -lm
+tcc:
+    tcc LuaShell.c LuaBins/liblua55.a -o Output/luaic -I./LuaIncludes -static -lm

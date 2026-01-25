@@ -160,7 +160,7 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         if (RunFile(L, argv[1]) != 0) return 1;
     } else {
-        TERM_GREEN; printf("LuaIC 1.3 "); TERM_RESET;
+        TERM_GREEN; printf("LuaIC 1.4 "); TERM_RESET;
         printf("| ");
         TERM_BLUE; printf("Shell "); TERM_RESET;
         printf("| ");

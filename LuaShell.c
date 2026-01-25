@@ -118,11 +118,11 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         if (RunFile(L, argv[1]) != 0) return 1;
     } else {
-        TERM_GREEN; printf("LuaIC 1.2 "); TERM_RESET;
+        TERM_GREEN; printf("LuaIC 1.3 "); TERM_RESET;
         printf("| ");
         TERM_BLUE; printf("Shell "); TERM_RESET;
         printf("| ");
-        TERM_YELLOW; printf("Lua 5.x\n"); TERM_RESET;
+        TERM_YELLOW; printf("Lua 5.5\n"); TERM_RESET;
 
         while (1) {
             TERM_YELLOW; printf("> "); TERM_RESET;

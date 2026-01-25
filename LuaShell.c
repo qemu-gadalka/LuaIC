@@ -30,6 +30,43 @@ static char *read_input(void) {
     return buffer;
 }
 
+static int l_settitle(lua_State *L) {
+    const char *title = luaL_checkstring(L, 1);
+#ifdef _WIN32
+    SetConsoleTitleA(title);
+#else
+    printf("\033]0;%s\007", title);
+#endif
+    return 0;
+}
+
+static int l_setcursorvisible(lua_State *L) {
+    int visible = lua_toboolean(L, 1);
+#ifdef _WIN32
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cursorInfo;
+    GetConsoleCursorInfo(hOut, &cursorInfo);
+    cursorInfo.bVisible = visible;
+    SetConsoleCursorInfo(hOut, &cursorInfo);
+#else
+    printf(visible ? "\033[?25h" : "\033[?25l");
+#endif
+    return 0;
+}
+
+static int l_gotoxy(lua_State *L) {
+    int x = (int)luaL_checkinteger(L, 1);
+    int y = (int)luaL_checkinteger(L, 2);
+#ifdef _WIN32
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD coord = { (SHORT)x, (SHORT)y };
+    SetConsoleCursorPosition(hOut, coord);
+#else
+    printf("\033[%d;%dH", y + 1, x + 1);
+#endif
+    return 0;
+}
+
 static int l_sleep(lua_State *L) {
     lua_Integer ms = luaL_checkinteger(L, 1);
     if (ms < 0) ms = 0;
@@ -115,6 +152,11 @@ int main(int argc, char *argv[]) {
     lua_register(L, "csleep", l_sleep);
     lua_register(L, "cbeep",  l_beep);
 
+    lua_register(L, "csettitle", l_settitle);
+    lua_register(L, "cgotoxy", l_gotoxy);
+    
+    lua_pushboolean(L, 0); lua_register(L, "chidecursor", l_setcursorvisible);
+    lua_pushboolean(L, 1); lua_register(L, "cshowcursor", l_setcursorvisible);
     if (argc > 1) {
         if (RunFile(L, argv[1]) != 0) return 1;
     } else {
